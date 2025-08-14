@@ -1,9 +1,31 @@
-"use client"; // faqat client tarafda ishlashi uchun
+"use client";
 
 import { useEffect } from "react";
 
 export default function YandexAd() {
   useEffect(() => {
+    const loadYandexAds = () => {
+      window.yaContextCb = window.yaContextCb || [];
+
+      // 1️⃣ Blok #1 (oddiy reklama)
+      window.yaContextCb.push(() => {
+        window.Ya.Context.AdvManager.render({
+          blockId: "R-A-16731105-1",
+          renderTo: "yandex_rtb_R-A-16731105-1",
+        });
+      });
+
+      // 2️⃣ Blok #2 (fullscreen reklama, faqat desktop)
+      window.yaContextCb.push(() => {
+        window.Ya.Context.AdvManager.render({
+          blockId: "R-A-16731105-2",
+          type: "fullscreen",
+          platform: "desktop",
+        });
+      });
+    };
+
+    // Skript hali yuklanmagan bo‘lsa — yuklaymiz
     if (!document.getElementById("yandex-ads-script")) {
       const script = document.createElement("script");
       script.id = "yandex-ads-script";
@@ -11,24 +33,10 @@ export default function YandexAd() {
       script.async = true;
       document.body.appendChild(script);
 
-      script.onload = () => {
-        window.yaContextCb = window.yaContextCb || [];
-        window.yaContextCb.push(() => {
-          window.Ya.Context.AdvManager.render({
-            blockId: "R-A-16731105-1",
-            renderTo: "yandex_rtb_R-A-16731105-1",
-          });
-        });
-      };
+      script.onload = loadYandexAds;
     } else {
-      // Skript allaqachon yuklangan bo'lsa, faqat render qilish
-      window.yaContextCb = window.yaContextCb || [];
-      window.yaContextCb.push(() => {
-        window.Ya.Context.AdvManager.render({
-          blockId: "R-A-16731105-1",
-          renderTo: "yandex_rtb_R-A-16731105-1",
-        });
-      });
+      // Skript allaqachon yuklangan bo‘lsa
+      loadYandexAds();
     }
   }, []);
 
