@@ -18,7 +18,7 @@ export default function YandexAd() {
       // 2️⃣ Blok #2 (fullscreen reklama, faqat desktop)
       window.yaContextCb.push(() => {
         window.Ya.Context.AdvManager.render({
-          blockId: "R-A-16731105-2",
+          blockId: "R-A-16590718-3",
           type: "fullscreen",
           platform: "desktop",
         });
