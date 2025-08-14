@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './homeImages.module.scss';
 import Link from 'next/link';
+import YandexAd from '@/yanAd1/ad1';
 
 const ResponsiveMasonry = () => {
   const [columns, setColumns] = useState(5);
@@ -134,6 +135,11 @@ const ResponsiveMasonry = () => {
 
   return (
     <div className={styles.galleryContainer}>
+      <div className="ad-test" style={{
+        marginBottom: `10px`
+      }}>
+        <YandexAd />
+      </div>
       <div ref={gridRef} className={styles.masonryGrid}>
         {images.map((image) => (
           <div
