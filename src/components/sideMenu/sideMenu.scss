@@ -1,0 +1,81 @@
+.s_m_fix {
+    width: 75px;
+    height: 100vh;
+    border-right: 2px solid #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100000;
+    background-color: #fff;
+
+    &.active {
+        z-index: unset;
+    }
+
+    .men_list_1, .men_list_2 {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        li {
+            a {
+                border-radius: 7px;
+                padding: 13px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                transition: all 0.1s;
+
+                &.logo {
+                    border-radius: 50%;
+                }
+
+                .popupcha {
+                    text-align: center;
+                    opacity: 0;
+                    z-index: 999999;
+                    color: #fff;
+                    background-color: black;
+                    font-size: 13px;
+                    padding: 7px 7px 9px;
+                    position: absolute;
+                    left: 120%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    border-radius: 7px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 80px !important;
+                    // height: 30px;
+                    pointer-events: none;
+                }
+
+                &:hover {
+                    background-color: #f1f1f1;
+
+                    .popupcha {
+                        opacity: 1;
+                        z-index: 99;
+                    }
+                }
+                svg, div {
+                    width: 21px !important;
+                    height: 21px !important;
+                }
+                &.logo {
+                    svg {
+                        fill: red;
+                    }
+                }
+            }
+        }
+    }
+}
